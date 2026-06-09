@@ -21,7 +21,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
 // Theme Toggle
 function initTheme() {
-    const savedTheme = localStorage.getItem('theme') || 'light';
+    const savedTheme = localStorage.getItem('theme') || 'dark';
     document.documentElement.setAttribute('data-theme', savedTheme);
     updateThemeIcon(savedTheme);
 
@@ -60,10 +60,15 @@ function initScrollEffects() {
     // Navbar background on scroll
     window.addEventListener('scroll', () => {
         if (window.scrollY > 100) {
-            navbar.style.background = 'rgba(255, 255, 255, 0.98)';
+            const theme = document.documentElement.getAttribute('data-theme');
+            if (theme === 'dark') {
+                navbar.style.background = 'rgba(31, 41, 55, 0.98)';
+            } else {
+                navbar.style.background = 'rgba(255, 255, 255, 0.98)';
+            }
             navbar.style.boxShadow = '0 2px 20px rgba(0, 0, 0, 0.1)';
         } else {
-            navbar.style.background = 'rgba(255, 255, 255, 0.95)';
+            navbar.style.background = 'transparent';
             navbar.style.boxShadow = 'none';
         }
     });
